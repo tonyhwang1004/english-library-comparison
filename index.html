@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="사설 온라인 영어도서관 비교표 - e-라이브러리, 리드앤톡, 와이즈리더, 더북클럽 등">
+    <meta name="keywords" content="영어도서관, 온라인영어학습, 영어원서, 영어독서, 영어교육">
+    <title>사설 온라인 영어도서관 비교표 | English Library Comparison</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="사설 온라인 영어도서관 비교표">
+    <meta property="og:description" content="주요 사설 영어도서관들을 한눈에 비교해보세요! e-라이브러리, 리드앤톡, 와이즈리더, 더북클럽 등">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/3498db/ffffff?text=English+Library+Comparison">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 15px 25px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .filter-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .library-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 2px solid #e8f4f8;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .library-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .library-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+        
+        .library-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .library-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .library-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 1;
+        }
+        
+        .library-name small {
+            display: block;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: normal;
+        }
+        
+        .screenshot-area {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #bdc3c7;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            color: #6c757d;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .screenshot-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .info-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .info-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-value {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        
+        .features {
+            margin: 15px 0;
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 2px;
+            font-weight: 500;
+        }
+        
+        .feature-tag.premium { background: #e74c3c; }
+        .feature-tag.free { background: #27ae60; }
+        .feature-tag.online { background: #9b59b6; }
+        .feature-tag.offline { background: #f39c12; }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .pros, .cons {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        .pros {
+            background: #d5f4e6;
+            color: #27ae60;
+            border-left: 3px solid #27ae60;
+        }
+        
+        .cons {
+            background: #fadbd8;
+            color: #e74c3c;
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .rating {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .rating-text {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .summary-table th {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .summary-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.85rem;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .summary-table tr:hover {
+            background: #e3f2fd;
+        }
+        
+        .export-section {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .export-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .export-btn {
+            background: white;
+            color: #667eea;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 5px 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .guide-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .guide-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .guide-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+        }
+        
+        .guide-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .guide-card p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 2px solid #ecf0f1;
+            margin-top: 40px;
+            color: #7f8c8d;
+        }
+        
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+                border-radius: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-bar {
+                gap: 20px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-table {
+                font-size: 0.8rem;
+            }
+            
+            .summary-table th,
+            .summary-table td {
+                padding: 8px 4px;
+            }
+        }
+        
+        /* 다크모드 지원 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            }
+            
+            .container {
+                background: #2c3e50;
+                color: #ecf0f1;
+            }
+            
+            .library-card {
+                background: #34495e;
+                border-color: #4a6741;
+            }
+            
+            .info-item {
+                background: #3a4a5c;
+            }
+        }
+        
+        /* 인쇄 스타일 */
+        @media print {
+            body {
+                background: white !important;
+            }
+            
+            .container {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            
+            .export-section {
+                display: none !important;
+            }
+            
+            .library-card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 섹션 -->
+        <header class="header">
+            <h1>📚 사설 온라인 영어도서관 비교표</h1>
+            <p>주요 사설 영어도서관들을 한눈에 비교하고 자녀에게 맞는 최적의 서비스를 찾아보세요</p>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">비교 대상</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3,000+</span>
+                    <span class="stat-label">최대 도서수</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">무료 서비스</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 필터 섹션 -->
+        <div class="filter-section">
+            <h3>🔍 필터별 보기</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterLibraries('all')">전체보기</button>
+                <button class="filter-btn" onclick="filterLibraries('free')">무료</button>
+                <button class="filter-btn" onclick="filterLibraries('online')">온라인</button>
+                <button class="filter-btn" onclick="filterLibraries('offline')">오프라인</button>
+                <button class="filter-btn" onclick="filterLibraries('elementary')">초등</button>
+                <button class="filter-btn" onclick="filterLibraries('adult')">성인</button>
+            </div>
+        </div>
+
+        <!-- 비교 카드 그리드 -->
+        <div class="comparison-grid" id="libraryGrid">
+            <!-- e-라이브러리 -->
+            <div class="library-card" data-category="online elementary paid">
+                <div class="library-header">
+                    <div class="library-icon" style="background: linear-gradient(45deg, #3498db, #2980b9);">📚</div>
+                    <div class="library-name">
+                        e-라이브러리
+                        <small>러닝캐슬 (Learning Castle)</small>
+                    </div>
+                </div>
+                
+                <div class="screenshot-area">
+                    📖 온라인 이북 학습화면<br>
+                    <small>HMH, 펭귄랜덤하우스 도서 제공</small>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">운영형태</div>
+                        <div class="info-value">온라인 전용</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">도서수</div>
+                        <div class="info-value">약 2,000권</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">레벨구분</div>
+                        <div class="info-value">9단계 세분화</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">대상연령</div>
+                        <div class="info-value">파닉스~초등고학년</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-tag online">자기주도학습</span>
+                    <span class="feature-tag">북퀴즈</span>
+                    <span class="feature-tag">애니메이션북</span>
+                    <span class="feature-tag">세계적출판사</span>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        ✅ 세계적 출판사 도서<br>
+                        ✅ 체계적 레벨구성<br>
+                        ✅ 다양한 학습활동
+                    </div>
+                    <div class="cons">
+                        ❌ 비용 불투명<br>
+                        ❌ 오프라인 불가<br>
+                        ❌ 개별관리 한계
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="rating-stars">★★★★☆</div>
+                    <div class="rating-text">종합평점 4.0/5.0</div>
+                </div>
+            </div>
+
+            <!-- 리드앤톡 -->
+            <div class="library-card" data-category="hybrid elementary middle paid">
+                <div class="library-header">
+                    <div class="library-icon" style="background: linear-gradient(45deg, #e74c3c, #c0392b);">🎯</div>
+                    <div class="library-name">
+                        리드앤톡
+                        <small>Read & Talk English Library</small>
+                    </div>
+                </div>
+                
+                <div class="screenshot-area">
+                    🎯 구문독해 전문 학습화면<br>
+                    <small>ORT, Treetops 시리즈 중심</small>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">운영형태</div>
+                        <div class="info-value">온오프라인 혼합</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">도서수</div>
+                        <div class="info-value">ORT 시리즈 중심</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">레벨구분</div>
+                        <div class="info-value">자체 레벨테스트</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">대상연령</div>
+                        <div class="info-value">초등~중고등</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-tag premium">구문독해전문</span>
+                    <span class="feature-tag">1:1디스커션</span>
+                    <span class="feature-tag">워크북첨삭</span>
+                    <span class="feature-tag">화상영어</span>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        ✅ 구문독해 특화<br>
+                        ✅ 개별 첨삭지도<br>
+                        ✅ 체계적 정독과정
+                    </div>
+                    <div class="cons">
+                        ❌ 프랜차이즈 편차<br>
+                        ❌ 비용 부담<br>
+                        ❌ 지점별 차이
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="rating-stars">★★★★☆</div>
+                    <div class="rating-text">종합평점 4.0/5.0</div>
+                </div>
+            </div>
+
+            <!-- 와이즈리더 -->
+            <div class="library-card" data-category="offline elementary middle high paid">
+                <div class="library-header">
+                    <div class="library-icon" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);">👑</div>
+                    <div class="library-name">
+                        와이즈리더
+                        <small>Wise Reader English Library</small>
+                    </div>
+                </div>
+                
+                <div class="screenshot-area">
+                    👑 AR Reading 프로그램<br>
+                    <small>12단계 체계적 레벨구성</small>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">운영형태</div>
+                        <div class="info-value">오프라인 도서관</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">도서수</div>
+                        <div class="info-value">약 2,000~3,000권</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">레벨구분</div>
+                        <div class="info-value">12단계(PAWN~KING)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">대상연령</div>
+                        <div class="info-value">유아~고등학교</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-tag premium">국내최대규모</span>
+                    <span class="feature-tag offline">AR Reading</span>
+                    <span class="feature-tag">CD음원</span>
+                    <span class="feature-tag">1:1첨삭</span>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        ✅ 최다 도서보유<br>
+                        ✅ 세밀한 레벨구분<br>
+                        ✅ 전연령 대응
+                    </div>
+                    <div class="cons">
+                        ❌ 오프라인만 가능<br>
+                        ❌ 지점 접근성<br>
+                        ❌ 높은 비용
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="rating-stars">★★★★★</div>
+                    <div class="rating-text">종합평점 4.5/5.0</div>
+                </div>
+            </div>
+
+            <!-- 더북클럽 -->
+            <div class="library-card" data-category="online adult paid">
+                <div class="library-header">
+                    <div class="library-icon" style="background: linear-gradient(45deg, #f39c12, #e67e22);">💬</div>
+                    <div class="library-name">
+                        더북클럽
+                        <small>The Book Club</small>
+                    </div>
+                </div>
+                
+                <div class="screenshot-area">
+                    💬 온라인 토론 화상화면<br>
+                    <small>영어원서 독서모임</small>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">운영형태</div>
+                        <div class="info-value">온라인 독서모임</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">도서수</div>
+                        <div class="info-value">월 1권 선정도서</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">레벨구분</div>
+                        <div class="info-value">수준별 클래스</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">대상연령</div>
+                        <div class="info-value">성인 중심</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-tag online">화상토론</span>
+                    <span class="feature-tag">가이드북</span>
+                    <span class="feature-tag">성인특화</span>
+                    <span class="feature-tag">심화토론</span>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        ✅ 심화 토론중심<br>
+                        ✅ 성인맞춤형<br>
+                        ✅ 고품질 가이드북
+                    </div>
+                    <div class="cons">
+                        ❌ 도서 선택권 제한<br>
+                        ❌ 초중등 부적합<br>
+                        ❌ 월 1권 한계
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="rating-stars">★★★★☆</div>
+                    <div class="rating-text">종합평점 4.0/5.0</div>
+                </div>
+            </div>
+
+            <!-- YBM Reading Farm -->
+            <div class="library-card" data-category="online elementary paid">
+                <div class="library-header">
+                    <div class="library-icon" style="background: linear-gradient(45deg, #27ae60, #229954);">🚜</div>
+                    <div class="library-name">
+                        YBM Reading Farm
+                        <small>YBM 영어도서관</small>
+                    </div>
+                </div>
+                
+                <div class="screenshot-area">
+                    🚜 YBM 통합 학습화면<br>
+                    <small>e-Book + 캐릭터 시스템</small>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">운영형태</div>
+                        <div class="info-value">온라인</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">도서수</div>
+                        <div class="info-value">HMH 교과서 시리즈</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">레벨구분</div>
+                        <div class="info-value">개인별 레벨테스트</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">대상연령</div>
+                        <div class="info-value">초등 중심</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-tag">e-Point시스템</span>
+                    <span class="feature-tag">캐릭터게임</span>
+                    <span class="feature-tag">단어학습</span>
+                    <span class="feature-tag">YBM브랜드</span>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        ✅ 게임화 학습<br>
+                        ✅ YBM 브랜드<br>
+                        ✅ 동기부여 시스템
+                    </div>
+                    <div class="cons">
+                        ❌ 제한적 콘텐츠<br>
+                        ❌ 초등생 특화<br>
+                        ❌ 단순한 구성
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="rating-stars">★★★☆☆</div>
+                    <div class="rating-text">종합평점 3.0/5.0</div>
+                </div>
+            </div>
+
+            <!-- EBS 펀리딩 -->
+            <div class="library-card" data-category="online elementary middle high free">
+                <div class="library-header">
+                    <div class="library-icon" style="background: linear-gradient(45deg, #27ae60, #2ecc71);">📺</div>
+                    <div class="library-name">
+                        EBS 펀리딩
+                        <small>EBS Fun Reading</small>
+                    </div>
+                </div>
+                
+                <div class="screenshot-area">
+                    📺 EBS 공식 학습화면<br>
+                    <small>무료 영어독서 서비스</small>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">운영형태</div>
+                        <div class="info-value">온라인 무료</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">도서수</div>
+                        <div class="info-value">1,700권 이상</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">레벨구분</div>
+                        <div class="info-value">초등~고등</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">대상연령</div>
+                        <div class="info-value">초등~고등</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-tag free">완전무료</span>
+                    <span class="feature-tag">EBS공식</span>
+                    <span class="feature-tag online">자기주도</span>
+                    <span class="feature-tag">전연령대응</span>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        ✅ 완전 무료<br>
+                        ✅ EBS 신뢰성<br>
+                        ✅ 광범위 연령대
+                    </div>
+                    <div class="cons">
+                        ❌ 기능 제한적<br>
+                        ❌ 개별 관리 부족<br>
+                        ❌ 상호작용 한계
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="rating-stars">★★★★☆</div>
+                    <div class="rating-text">종합평점 4.0/5.0</div>
+                </div>
+            </div>
+
+            <!-- 힐잉 북클럽 -->
+            <div class="library-card" data-category="online adult paid">
+                <div class="library-header">
+                    <div class="library-icon" style="background: linear-gradient(45deg, #16a085, #1abc9c);">🌿</div>
+                    <div class="library-name">
+                        힐잉 북클럽
+                        <small>Healeng Book Club</small>
+                    </div>
+                </div>
+                
+                <div class="screenshot-area">
+                    🌿 온라인 독서모임 화면<br>
+                    <small>능동적 읽기 프로그램</small>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">운영형태</div>
+                        <div class="info-value">온라인 독서모임</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">도서수</div>
+                        <div class="info-value">선정도서 중심</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">레벨구분</div>
+                        <div class="info-value">수준별 모임</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">대상연령</div>
+                        <div class="info-value">성인</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <span class="feature-tag online">능동적읽기</span>
+                    <span class="feature-tag">온라인토론</span>
+                    <span class="feature-tag">성인특화</span>
+                    <span class="feature-tag">회차별결제</span>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        ✅ 능동적 독서법<br>
+                        ✅ 유연한 결제<br>
+                        ✅ 성인 맞춤형
+                    </div>
+                    <div class="cons">
+                        ❌ 제한된 도서<br>
+                        ❌ 아동 부적합<br>
+                        ❌ 소규모 운영
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <div class="rating-stars">★★★☆☆</div>
+                    <div class="rating-text">종합평점 3.5/5.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 요약 테이블 -->
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>도서관명</th>
+                    <th>도서수</th>
+                    <th>비용</th>
+                    <th>운영형태</th>
+                    <th>주요특징</th>
+                    <th>추천대상</th>
+                    <th>종합평점</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>와이즈리더</strong></td>
+                    <td>3,000권</td>
+                    <td>유료(상담)</td>
+                    <td>오프라인</td>
+                    <td>최대 도서보유</td>
+                    <td>전연령</td>
+                    <td><span class="rating-stars">★★★★★</span></td>
+                </tr>
+                <tr>
+                    <td><strong>e-라이브러리</strong></td>
+                    <td>2,000권</td>
+                    <td>유료(상담)</td>
+                    <td>온라인</td>
+                    <td>세계적 출판사</td>
+                    <td>초등중심</td>
+                    <td><span class="rating-stars">★★★★☆</span></td>
+                </tr>
+                <tr>
+                    <td><strong>EBS 펀리딩</strong></td>
+                    <td>1,700권</td>
+                    <td>무료</td>
+                    <td>온라인</td>
+                    <td>완전무료</td>
+                    <td>모든연령</td>
+                    <td><span class="rating-stars">★★★★☆</span></td>
+                </tr>
+                <tr>
+                    <td><strong>리드앤톡</strong></td>
+                    <td>ORT중심</td>
+                    <td>유료(지점별)</td>
+                    <td>혼합형</td>
+                    <td>구문독해전문</td>
+                    <td>초중고</td>
+                    <td><span class="rating-stars">★★★★☆</span></td>
+                </tr>
+                <tr>
+                    <td><strong>더북클럽</strong></td>
+                    <td>월1권선정</td>
+                    <td>유료(월결제)</td>
+                    <td>온라인</td>
+                    <td>토론중심</td>
+                    <td>성인</td>
+                    <td><span class="rating-stars">★★★★☆</span></td>
+                </tr>
+                <tr>
+                    <td><strong>YBM Reading Farm</strong></td>
+                    <td>HMH시리즈</td>
+                    <td>YBM포함</td>
+                    <td>온라인</td>
+                    <td>게임화학습</td>
+                    <td>초등</td>
+                    <td><span class="rating-stars">★★★☆☆</span></td>
+                </tr>
+                <tr>
+                    <td><strong>힐잉 북클럽</strong></td>
+                    <td>선정도서</td>
+                    <td>회차별결제</td>
+                    <td>온라인</td>
+                    <td>능동적읽기</td>
+                    <td>성인</td>
+                    <td><span class="rating-stars">★★★☆☆</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 내보내기 섹션 -->
+        <div class="export-section">
+            <h3>📊 비교표 활용하기</h3>
+            <button class="export-btn" onclick="exportToCSV()">📄 CSV 다운로드</button>
+            <button class="export-btn" onclick="exportToExcel()">📊 엑셀 다운로드</button>
+            <button class="export-btn" onclick="printComparison()">🖨️ 인쇄하기</button>
+            <button class="export-btn" onclick="shareComparison()">📤 공유하기</button>
+        </div>
+
+        <!-- 선택 가이드 -->
+        <div class="guide-section">
+            <h3>📋 나에게 맞는 영어도서관 선택 가이드</h3>
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h4>💰 비용 중심 선택</h4>
+                    <p><strong>무료:</strong> EBS 펀리딩<br>
+                    <strong>가성비:</strong> e-라이브러리<br>
+                    <strong>프리미엄:</strong> 와이즈리더</p>
+                </div>
+                <div class="guide-card">
+                    <h4>🎯 연령별 추천</h4>
+                    <p><strong>초등학생:</strong> YBM, EBS 펀리딩<br>
+                    <strong>중고등학생:</strong> 리드앤톡, 와이즈리더<br>
+                    <strong>성인:</strong> 더북클럽, 힐잉 북클럽</p>
+                </div>
+                <div class="guide-card">
+                    <h4>📚 학습방식별</h4>
+                    <p><strong>자기주도 학습:</strong> e-라이브러리, EBS<br>
+                    <strong>첨삭 중심:</strong> 리드앤톡, 와이즈리더<br>
+                    <strong>토론 중심:</strong> 더북클럽, 힐잉 북클럽</p>
+                </div>
+                <div class="guide-card">
+                    <h4>🌐 접근방식별</h4>
+                    <p><strong>온라인 선호:</strong> e-라이브러리, EBS<br>
+                    <strong>오프라인 선호:</strong> 와이즈리더<br>
+                    <strong>혼합형:</strong> 리드앤톡</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <p>📚 사설 온라인 영어도서관 비교표 | 최종 업데이트: 2025년 5월</p>
+            <p>이 비교표는 공개된 정보를 바탕으로 작성되었으며, 정확한 정보는 각 업체에 직접 문의하시기 바랍니다.</p>
+            <p>GitHub에서 이 프로젝트를 확인하세요: <a href="https://github.com/yourusername/english-library-comparison">GitHub Repository</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // 필터 기능
+        function filterLibraries(category) {
+            const cards = document.querySelectorAll('.library-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // 버튼 상태 업데이트
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 카드 필터링
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category.includes(category)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease-in';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // CSV 내보내기
+        function exportToCSV() {
+            const data = [
+                ['도서관명', '운영형태', '도서수', '레벨구분', '대상연령', '비용', '주요특징'],
+                ['e-라이브러리', '온라인전용', '약2000권', '9단계', '파닉스이후~초등고학년', '유료(상담후공개)', 'HMH,펭귄랜덤하우스,스콜라스틱도서'],
+                ['리드앤톡', '온오프라인혼합', 'ORT시리즈중심', '자체레벨테스트', '초등~중고등', '지점별상이', '구문독해전문,워크북첨삭,화상영어'],
+                ['와이즈리더', '오프라인도서관', '약2000~3000권', '12단계(PAWN~KING)', '유아~고등학교', '지점별상이', 'AR Reading,CD음원,1:1첨삭지도'],
+                ['더북클럽', '온라인독서모임', '월1권선정도서', '수준별클래스', '성인중심', '월패키지제', '영어원서토론,가이드북,화상토론'],
+                ['YBM Reading Farm', '온라인', 'HMH교과서시리즈', '개인별레벨테스트', '초등중심', 'YBM수강료포함', 'e-Book+음성,단어학습,캐릭터동기부여'],
+                ['EBS 펀리딩', '온라인무료', '1700권이상', '초등~고등', '초등~고등', '무료', 'EBS공식서비스,무료이용'],
+                ['힐잉 북클럽', '온라인독서모임', '선정도서중심', '수준별모임', '성인', '회차별결제', '능동적읽기,온라인토론']
+            ];
+            
+            const csvContent = data.map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+            const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = '사설_영어도서관_비교표.csv';
+            link.click();
+        }
+
+        // 엑셀 내보내기 (SheetJS 라이브러리 필요)
+        function exportToExcel() {
+            // SheetJS가 로드된 경우에만 실행
+            if (typeof XLSX !== 'undefined') {
+                const data = [
+                    ['도서관명', '운영형태', '도서수', '레벨구분', '대상연령', '비용', '주요특징', '종합평점'],
+                    ['e-라이브러리', '온라인전용', '약2000권', '9단계', '파닉스이후~초등고학년', '유료(상담후공개)', 'HMH,펭귄랜덤하우스,스콜라스틱도서', '★★★★☆'],
+                    ['리드앤톡', '온오프라인혼합', 'ORT시리즈중심', '자체레벨테스트', '초등~중고등', '지점별상이', '구문독해전문,워크북첨삭,화상영어', '★★★★☆'],
+                    ['와이즈리더', '오프라인도서관', '약2000~3000권', '12단계(PAWN~KING)', '유아~고등학교', '지점별상이', 'AR Reading,CD음원,1:1첨삭지도', '★★★★★'],
+                    ['더북클럽', '온라인독서모임', '월1권선정도서', '수준별클래스', '성인중심', '월패키지제', '영어원서토론,가이드북,화상토론', '★★★★☆'],
+                    ['YBM Reading Farm', '온라인', 'HMH교과서시리즈', '개인별레벨테스트', '초등중심', 'YBM수강료포함', 'e-Book+음성,단어학습,캐릭터동기부여', '★★★☆☆'],
+                    ['EBS 펀리딩', '온라인무료', '1700권이상', '초등~고등', '초등~고등', '무료', 'EBS공식서비스,무료이용', '★★★★☆'],
+                    ['힐잉 북클럽', '온라인독서모임', '선정도서중심', '수준별모임', '성인', '회차별결제', '능동적읽기,온라인토론', '★★★☆☆']
+                ];
+                
+                const ws = XLSX.utils.aoa_to_sheet(data);
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, '영어도서관비교');
+                XLSX.writeFile(wb, '사설_영어도서관_비교표.xlsx');
+            } else {
+                alert('엑셀 내보내기 기능을 사용하려면 인터넷 연결이 필요합니다.');
+            }
+        }
+
+        // 인쇄 기능
+        function printComparison() {
+            window.print();
+        }
+
+        // 공유 기능
+        function shareComparison() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '사설 온라인 영어도서관 비교표',
+                    text: '주요 사설 영어도서관들을 한눈에 비교해보세요!',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('링크가 클립보드에 복사되었습니다!');
+                }).catch(() => {
+                    alert('링크 복사에 실패했습니다. 수동으로 복사해주세요: ' + window.location.href);
+                });
+            }
+        }
+
+        // 페이지 로드 시 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.library-card');
+            cards.forEach((card, index) => {
+                card.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.1}s`;
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+            });
+        });
+
+        // CSS 애니메이션 추가
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- SheetJS 라이브러리 (엑셀 내보내기용) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Google Analytics (선택사항) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+</body>
+</html>
