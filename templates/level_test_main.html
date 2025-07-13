@@ -449,9 +449,11 @@
             }
         }
     </style>
+    <!-- SureReading 모듈화 번들 -->
+    <script src="{{ url_for('static', filename='js/books-bundle.js') }}"></script>
 </head>
 <body>
-    <a href="../index.html" class="back-link">🏠 홈으로</a>
+    <a href="/" class="back-link">🏠 홈으로</a>
 
     <div class="container">
         <div class="header">
@@ -586,7 +588,6 @@
         </div>
     </div>
 
-    <script src="../static/js/books-bundle.js"></script>
     <script>
         // 레벨별 도서 데이터
         const levelBooks = {
@@ -770,6 +771,12 @@
             document.querySelector(`[data-book="${bookId}"]`).classList.add('selected');
             
             updateStartButton();
+            
+            // 도서 선택 시 확인 후 시작
+            const book = levelBooks[selectedLevel].find(b => b.id === bookId);
+            if (confirm(`${book.title} 레벨테스트를 시작하시겠습니까?\n\n📚 도서: ${book.title}\n📊 레벨: Level ${selectedLevel}\n❓ 문제 수: 60문제\n⏱️ 제한 시간: 90분`)) {
+                window.location.href = `/level-test/start/${selectedLevel}/${bookId}`;
+            }
             updateSummary();
         }
 
@@ -845,8 +852,8 @@
                 
                 sessionStorage.setItem('levelTestInfo', JSON.stringify(testInfo));
                 
-                // 데모 메시지 (실제 테스트 페이지가 없으므로)
-                alert(`테스트가 시작됩니다!\n\n📚 ${book.title}\n📊 Level ${selectedLevel}\n👤 ${studentName}\n\n(이 데모에서는 실제 테스트 페이지로 이동하지 않습니다)`);
+                // 테스트 페이지로 이동
+                window.location.href = `/level-test/start/${selectedLevel}/${selectedBook}`;
             }
         }
 
