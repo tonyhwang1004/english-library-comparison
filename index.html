@@ -1,3 +1,32 @@
+
+# 파일 생성 후:
+echo "=== 파일 생성 확인 ==="
+ls -la index.html
+
+# Git에 추가 (기존 파일들은 건드리지 않음)
+git add index.html
+git commit -m "Add GitHub Pages index.html - keep existing Python files intact"
+git push origin main
+
+echo "=== 완료! 두 가지 방식 모두 사용 가능 ==="
+echo "1. PythonAnywhere Flask: app.py 실행"
+echo "2. GitHub Pages: https://tonyhwang1004.github.io/english-library-comparison/"
+
+# ═══════════════════════════════════════════════════════════════
+
+# 📋 결과:
+# ✅ app.py - 그대로 보존 (Flask 백엔드)
+# ✅ templates/ - 그대로 보존 (모든 HTML 파일들)  
+# ✅ static/ - 그대로 보존 (CSS, JS, 오디오)
+# ✅ models/ - 그대로 보존 (사용자 인증)
+# ➕ index.html - 새로 추가 (GitHub Pages용)
+
+# 🎯 이점:
+# - 기존 Flask 시스템: 백업으로 보존
+# - 새로운 GitHub Pages: 메인으로 사용
+# - 문제 발생시: 언제든 기존 시스템으로 복귀 가능
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -78,7 +107,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px; /* 더 넓게 */
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 15px;
         }
@@ -100,10 +129,10 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 12px; /* 간격 줄임 */
+            gap: 12px;
             align-items: center;
-            flex-wrap: nowrap; /* 줄바꿈 방지 */
-            overflow-x: auto; /* 필요시 스크롤 */
+            flex-wrap: nowrap;
+            overflow-x: auto;
         }
 
         .nav-menu a {
@@ -112,10 +141,10 @@
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
-            padding: 6px 10px; /* 패딩 축소 */
+            padding: 6px 10px;
             border-radius: 8px;
-            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-            font-size: 0.85rem; /* 폰트 크기 축소 */
+            white-space: nowrap;
+            font-size: 0.85rem;
         }
 
         .nav-menu a:hover {
@@ -169,6 +198,76 @@
         .nav-menu a.word-study-link:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        /* 로그인 관련 스타일 */
+        .nav-menu a.login-link {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: #fff !important;
+            animation: loginLinkGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes loginLinkGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(76, 175, 80, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(76, 175, 80, 0.8), 0 0 35px rgba(69, 160, 73, 0.4); }
+        }
+
+        .nav-menu a.logout-link {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: #fff !important;
+            animation: logoutLinkGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes logoutLinkGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(244, 67, 54, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(244, 67, 54, 0.8), 0 0 35px rgba(211, 47, 47, 0.4); }
+        }
+
+        .nav-menu a.user-progress-link {
+            background: linear-gradient(45deg, #9C27B0, #7B1FA2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: #fff !important;
+            animation: progressLinkGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes progressLinkGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(156, 39, 176, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(156, 39, 176, 0.8), 0 0 35px rgba(123, 31, 162, 0.4); }
+        }
+
+        .nav-menu a.admin-link {
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: #fff !important;
+            animation: adminLinkGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes adminLinkGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 152, 0, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(255, 152, 0, 0.8), 0 0 35px rgba(245, 124, 0, 0.4); }
+        }
+
+        .nav-menu .user-info .user-welcome {
+            color: #00ff88;
+            font-weight: 600;
+            font-size: 0.75rem;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 4px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            animation: userInfoGlow 3s ease-in-out infinite;
+            margin: 0 5px;
+        }
+
+        @keyframes userInfoGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.6); }
         }
 
         /* 히어로 섹션 */
@@ -440,122 +539,6 @@
             background: rgba(255, 107, 107, 0.2);
         }
 
-        /* 반응형 */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px; /* 더 넓게 */
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-            .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 12px; /* 간격 줄임 */
-            align-items: center;
-            flex-wrap: nowrap; /* 줄바꿈 방지 */
-            overflow-x: auto; /* 필요시 스크롤 */
-        }
-
-            .admin-section {
-                position: static;
-                transform: none;
-                text-align: center;
-                margin: 50px 0;
-            }
-
-            .admin-btn {
-                display: inline-block;
-                margin: 0 10px;
-            }
-        }
-
-
-        /* 사용자 관련 링크 스타일 */
-        .nav-menu a.login-link {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            padding: 6px 12px;
-            border-radius: 20px;
-            color: #fff !important;
-            animation: loginLinkGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes loginLinkGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(76, 175, 80, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(76, 175, 80, 0.8), 0 0 35px rgba(69, 160, 73, 0.4); }
-        }
-
-        .nav-menu a.logout-link {
-            background: linear-gradient(45deg, #f44336, #d32f2f);
-            padding: 6px 12px;
-            border-radius: 20px;
-            color: #fff !important;
-            animation: logoutLinkGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes logoutLinkGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(244, 67, 54, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(244, 67, 54, 0.8), 0 0 35px rgba(211, 47, 47, 0.4); }
-        }
-
-        .nav-menu a.user-progress-link {
-            background: linear-gradient(45deg, #9C27B0, #7B1FA2);
-            padding: 6px 12px;
-            border-radius: 20px;
-            color: #fff !important;
-            animation: progressLinkGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes progressLinkGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(156, 39, 176, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(156, 39, 176, 0.8), 0 0 35px rgba(123, 31, 162, 0.4); }
-        }
-
-        .nav-menu a.admin-link {
-            background: linear-gradient(45deg, #FF9800, #F57C00);
-            padding: 6px 12px;
-            border-radius: 20px;
-            color: #fff !important;
-            animation: adminLinkGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes adminLinkGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 152, 0, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(255, 152, 0, 0.8), 0 0 35px rgba(245, 124, 0, 0.4); }
-        }
-
-        .nav-menu .user-info .user-welcome {
-            color: #00ff88;
-            font-weight: 600;
-            font-size: 0.75rem; /* 더 작게 */
-            background: rgba(0, 255, 136, 0.1);
-            padding: 4px 8px; /* 패딩 축소 */
-            border-radius: 12px;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            animation: userInfoGlow 3s ease-in-out infinite;
-            margin: 0 5px;
-        }
-
-        @keyframes userInfoGlow {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.6); }
-        }
-
-        /* 호버 효과 */
-        .nav-menu a.login-link:hover,
-        .nav-menu a.logout-link:hover,
-        .nav-menu a.user-progress-link:hover,
-        .nav-menu a.admin-link:hover {
-            transform: translateY(-3px) scale(1.05);
-        }
-
         /* 스크롤 효과 */
         .scroll-indicator {
             position: absolute;
@@ -569,9 +552,39 @@
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(-10px); }
         }
+
+        /* 히든 클래스 */
+        .hidden {
+            display: none;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-content {
+                padding: 0 10px;
+            }
+
+            .nav-menu {
+                gap: 8px;
+            }
+
+            .admin-section {
+                position: static;
+                transform: none;
+                text-align: center;
+                margin: 50px 0;
+            }
+
+            .admin-btn {
+                display: inline-block;
+                margin: 0 10px;
+            }
+        }
     </style>
-    <!-- SureReading 모듈화 번들 -->
-    <script src="{{ url_for('static', filename='js/books-bundle.js') }}"></script>
 </head>
 <body>
     <!-- 배경 애니메이션 -->
@@ -590,23 +603,16 @@
                 <li><a href="#qr-demo">QR 학습</a></li>
                 <li><a href="http://www.kimsmom.site/" target="_blank" class="word-study-link">📖 영어단어</a></li>
                 <li><a href="http://www.suelibrary.store/level-learning.html" target="_blank" class="level-learning-link">📚 레벨별 학습</a></li>
-                <li><a href="/level-test/main">📝 레벨테스트</a></li>
+                <li><a href="http://www.suelibrary.store/level-test/main" target="_blank">📝 레벨테스트</a></li>
                 
-                <!-- 사용자 인증 상태에 따른 동적 메뉴 -->
-                {% if current_user.is_authenticated %}
-                    <!-- 로그인된 상태 -->
-                    <li><a href="/my-progress" class="user-progress-link">📊 내 학습현황</a></li>
-                    {% if current_user.is_admin %}
-                        <li><a href="/admin" class="admin-link">🔐 관리자</a></li>
-                    {% endif %}
-                    <li class="user-info">
-                        <span class="user-welcome">👤 {{ current_user.student_name }}님</span>
-                    </li>
-                    <li><a href="/logout" class="logout-link">🚪 로그아웃</a></li>
-                {% else %}
-                    <!-- 로그인되지 않은 상태 -->
-                    <li><a href="/login" class="login-link">🔑 로그인</a></li>
-                {% endif %}
+                <!-- 동적 사용자 메뉴 (JavaScript로 제어) -->
+                <li id="loginMenu"><a href="templates/login.html" class="login-link">🔑 로그인</a></li>
+                <li id="userProgressMenu" class="hidden"><a href="templates/my_progress.html" class="user-progress-link">📊 내 학습현황</a></li>
+                <li id="adminMenu" class="hidden"><a href="templates/admin_dashboard.html" class="admin-link">🔐 관리자</a></li>
+                <li id="userInfo" class="hidden">
+                    <span class="user-welcome">👤 <span id="userName">사용자</span>님</span>
+                </li>
+                <li id="logoutMenu" class="hidden"><a href="#" onclick="logout()" class="logout-link">🚪 로그아웃</a></li>
                 
                 <li><a href="#contact">연락처</a></li>
             </ul>
@@ -631,21 +637,7 @@
         <div class="scroll-indicator">
             <div style="font-size: 2rem;">⬇</div>
         </div>
-    
-                    <div class="book-card level-4" onclick="openBook('harry_potter_and_the_sorcerer_s_stone_learning')">
-                        <div class="book-icon">📕</div>
-                        <h3>Harry Potter and the Sorcerer's Stone</h3>
-                        <p class="author">J.K. Rowling</p>
-                        <div class="book-info">
-                            <span class="level">Level 4</span>
-                            <span class="chapters">8 Chapters</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 0%"></div>
-                        </div>
-                        <span class="progress-text">진도: 0%</span>
-                    </div>
-</section>
+    </section>
 
     <!-- 특징 섹션 -->
     <section class="features" id="features">
@@ -714,10 +706,14 @@
 
     <!-- 관리자 섹션 -->
     <div class="admin-section">
-        <a href="/admin" class="admin-btn">🔐 관리자</a>
+        <a href="templates/admin_dashboard.html" class="admin-btn">🔐 관리자</a>
     </div>
 
+    <script src="static/js/books-bundle.js"></script>
     <script>
+        // 현재 사용자 상태
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
         // 파티클 생성
         function createParticles() {
             const particles = document.getElementById('particles');
@@ -734,6 +730,49 @@
             }
         }
 
+        // 사용자 메뉴 업데이트
+        function updateUserMenu() {
+            const loginMenu = document.getElementById('loginMenu');
+            const userProgressMenu = document.getElementById('userProgressMenu');
+            const adminMenu = document.getElementById('adminMenu');
+            const userInfo = document.getElementById('userInfo');
+            const logoutMenu = document.getElementById('logoutMenu');
+            const userName = document.getElementById('userName');
+
+            if (currentUser) {
+                // 로그인된 상태
+                loginMenu.classList.add('hidden');
+                userProgressMenu.classList.remove('hidden');
+                userInfo.classList.remove('hidden');
+                logoutMenu.classList.remove('hidden');
+                userName.textContent = currentUser.name || '사용자';
+
+                if (currentUser.role === 'admin') {
+                    adminMenu.classList.remove('hidden');
+                }
+            } else {
+                // 로그인되지 않은 상태
+                loginMenu.classList.remove('hidden');
+                userProgressMenu.classList.add('hidden');
+                adminMenu.classList.add('hidden');
+                userInfo.classList.add('hidden');
+                logoutMenu.classList.add('hidden');
+            }
+        }
+
+        // 로그아웃
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateUserMenu();
+            alert('로그아웃되었습니다.');
+        }
+
+        // 책 열기
+        function openBook(bookId) {
+            window.location.href = `templates/learning.html?book=${bookId}`;
+        }
+
         // 스크롤 효과
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
@@ -746,13 +785,12 @@
 
         // QR코드 학습 시작
         function openLearning(qrCode) {
-            // 실제 QR 스캔 효과
             const book = document.querySelector(`[onclick="openLearning('${qrCode}')"]`);
             book.style.transform = 'scale(1.2)';
             book.style.background = 'rgba(0, 255, 136, 0.3)';
 
             setTimeout(() => {
-                window.open(`/qr/${qrCode}`, '_blank');
+                window.location.href = `templates/learning.html?qr=${qrCode}`;
                 book.style.transform = 'scale(1.05)';
                 book.style.background = 'rgba(255, 255, 255, 0.1)';
             }, 500);
@@ -774,6 +812,7 @@
 
         // 초기화
         createParticles();
+        updateUserMenu();
 
         // 페이지 로드 애니메이션
         window.addEventListener('load', () => {
