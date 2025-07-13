@@ -1,5 +1,5 @@
 # app.py - 수리딩어학원 QR코드 학습 시스템 (완전한 버전)
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect, url_for
 from flask_login import LoginManager, current_user, login_required, UserMixin, AnonymousUserMixin
 from datetime import datetime, timedelta
 import json
@@ -501,10 +501,10 @@ questions_data = [
 
 # ================ 기본 라우트들 ================
 
-@app.route("/") 
-def home(): 
-    if not current_user.is_authenticated: 
-        return redirect("/login") 
+@app.route("/")
+def home():
+    if not current_user.is_authenticated:
+        return redirect("/login")
     return render_template("index.html")
 
 @app.route('/api')
@@ -897,16 +897,16 @@ def learning_chapter(book_id, chapter):
                          questions=chapter_questions)
 
 @app.route('/level-learning.html')
-def level_learning():
+def level_learning_html():
     return render_template('level-learning.html')
-    """레벨테스트 메인 페이지 - 레벨 및 도서 선택"""
-    return render_template('level_test_main.html')
 
-@app.route("/level-test/main")
-def level_test_main_page():
-    """레벨테스트 메인 페이지"""
-    return render_template("level_test_main.html")
+@app.route('/level-test.html')
+def level_test_html():
+    return redirect('http://www.suelibrary.store/level-test.html')
 
+@app.route('/my-progress.html')
+def my_progress_html():
+    return render_template('my_progress.html')
 
 @app.route("/level-test/start/<int:level>/<book_id>")
 def level_test_start(level, book_id):
@@ -1017,7 +1017,7 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        
+
         # 사용자 인증
         user = User.get_by_username(username)
         if user and user.password == password:
@@ -1025,7 +1025,7 @@ def login():
             session['user_id'] = user.id
             session['username'] = user.username
             session['is_admin'] = user.is_admin
-            
+
             # 관리자면 관리자 페이지로, 아니면 메인 페이지로
             if user.is_admin:
                 return redirect('/admin')
@@ -1033,7 +1033,7 @@ def login():
                 return redirect('/')
         else:
             flash('로그인 정보가 올바르지 않습니다.', 'error')
-    
+
     return render_template('login.html')
 
 # 로그아웃
@@ -1043,11 +1043,6 @@ def logout():
     session.clear()
     return redirect('/login')
 
-@app.route('/level-learning')  # ← 여기에 추가!
-def level_learning():
-    return redirect('https://tonyhwang1004.github.io/english-library-comparison/level-learning.html')
-
-
 # 관리자 페이지
 @app.route('/admin')
 @login_required
@@ -1056,11 +1051,11 @@ def admin():
     if not (hasattr(current_user, 'is_admin') and current_user.is_admin):
         flash('관리자 권한이 필요합니다.', 'error')
         return redirect('/login')
-    
+
     return render_template('admin.html')
 
 # 기존 메인 페이지에 로그인 체크 추가 (라인 504 수정 필요)
-# @app.route('/') 
+# @app.route('/')
 # def index():
 #     if not current_user.is_authenticated:
 #         return redirect('/login')
@@ -1083,33 +1078,33 @@ def signup():
         parent_email = request.form.get('parent_email')
         phone = request.form.get('phone')
         class_type = request.form.get('class_type')
-        
+
         # 입력 검증
         if not all([username, password, password_confirm, student_name, parent_email]):
             flash('모든 필수 항목을 입력해주세요.', 'error')
             return render_template('signup.html')
-        
+
         if password != password_confirm:
             flash('비밀번호가 일치하지 않습니다.', 'error')
             return render_template('signup.html')
-        
+
         if len(password) < 4:
             flash('비밀번호는 4자 이상이어야 합니다.', 'error')
             return render_template('signup.html')
-        
+
         # 사용자명 중복 체크
         if User.get_by_username(username):
             flash('이미 존재하는 아이디입니다.', 'error')
             return render_template('signup.html')
-        
+
         # 새 사용자 생성
         new_id = max(USERS_DB.keys()) + 1 if USERS_DB else 1
         new_user = User(new_id, username, password, student_name, 1, False)
         USERS_DB[new_id] = new_user
-        
+
         flash('회원가입이 완료되었습니다! 로그인해주세요.', 'success')
         return redirect('/login')
-    
+
     return render_template('signup.html')
 
 
@@ -1120,7 +1115,7 @@ def signup():
 def my_progress():
     if not current_user.is_authenticated:
         return redirect('/login')
-    
+
     # 템플릿에 맞는 데이터 구조 생성
     progress_data = {
         'student_name': current_user.student_name,
@@ -1134,13 +1129,13 @@ def my_progress():
                 'progress': 75
             },
             {
-                'title': "Magic Tree House #1", 
+                'title': "Magic Tree House #1",
                 'qr_code': 'MTH001',
                 'progress': 45
             },
             {
                 'title': "Frog and Toad",
-                'qr_code': 'FT001', 
+                'qr_code': 'FT001',
                 'progress': 100
             }
         ],
@@ -1150,7 +1145,7 @@ def my_progress():
             'study_hours': '8시간'
         }
     }
-    
+
     return render_template('my_progress.html', progress=progress_data)
 
 
@@ -1163,7 +1158,7 @@ def admin_students():
     if not (hasattr(current_user, 'is_admin') and current_user.is_admin):
         flash('관리자 권한이 필요합니다.', 'error')
         return redirect('/login')
-    
+
     # 학생 목록 데이터 생성
     students = []
     for user in USERS_DB.values():
@@ -1177,7 +1172,7 @@ def admin_students():
                 'progress': '진행 중',
                 'books_completed': 5
             })
-    
+
     return render_template('admin_students.html', students=students)
 
 # 관리자 - 도서 관리 페이지
@@ -1187,7 +1182,7 @@ def admin_books():
     if not (hasattr(current_user, 'is_admin') and current_user.is_admin):
         flash('관리자 권한이 필요합니다.', 'error')
         return redirect('/login')
-    
+
     return render_template('admin_books.html', books=books_data)
 
 # 관리자 - 대시보드 페이지
@@ -1197,7 +1192,7 @@ def admin_dashboard():
     if not (hasattr(current_user, 'is_admin') and current_user.is_admin):
         flash('관리자 권한이 필요합니다.', 'error')
         return redirect('/login')
-    
+
     return render_template('admin_dashboard.html')
 
 # 관리자 - 분석 페이지
@@ -1207,7 +1202,7 @@ def admin_analytics():
     if not (hasattr(current_user, 'is_admin') and current_user.is_admin):
         flash('관리자 권한이 필요합니다.', 'error')
         return redirect('/login')
-    
+
     # 분석 데이터
     analytics_data = {
         'monthly_stats': {
@@ -1218,12 +1213,12 @@ def admin_analytics():
         },
         'level_distribution': [
             {'level': 1, 'students': 5},
-            {'level': 2, 'students': 8}, 
+            {'level': 2, 'students': 8},
             {'level': 3, 'students': 12},
             {'level': 4, 'students': 6},
             {'level': 5, 'students': 3}
         ]
     }
-    
+
     return render_template('admin_analytics.html', analytics=analytics_data)
 
