@@ -1043,6 +1043,11 @@ def logout():
     session.clear()
     return redirect('/login')
 
+@app.route('/level-learning')  # ← 여기에 추가!
+def level_learning():
+    return redirect('https://tonyhwang1004.github.io/english-library-comparison/level-learning.html')
+
+
 # 관리자 페이지
 @app.route('/admin')
 @login_required
