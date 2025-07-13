@@ -902,11 +902,11 @@ def level_learning_html():
 
 @app.route('/level-test.html')
 def level_test_html():
-    return render_template('level_test_main.html')
+    return redirect('http://www.suelibrary.store/level-test.html')
 
 @app.route('/my-progress.html')
 def my_progress_html():
-    return render_template('my_progress.html')
+    return redirect('http://www.suelibrary.store/my_progress.html')
 
 @app.route("/level-test/start/<int:level>/<book_id>")
 def level_test_start(level, book_id):
