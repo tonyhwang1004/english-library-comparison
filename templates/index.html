@@ -589,9 +589,9 @@
                 <li><a href="#features">특징</a></li>
                 <li><a href="#qr-demo">QR 학습</a></li>
                 <li><a href="http://www.kimsmom.site/" target="_blank" class="word-study-link">📖 영어단어</a></li>
-                <li><a href="http://www.suelibrary.store/level-learning.html" target="_blank" class="level-learning-link">📚 레벨별 학습</a></li>
-                <li><a href="/level-test/main">📝 레벨테스트</a></li>
-                
+                <li><a href="/level-learning.html" target="_blank" class="level-learning-link">📚 레벨별 학습</a></li>
+                <li><a href="/level-test.html" target="_blank">📝 레벨테스트</a></li>
+
                 <!-- 사용자 인증 상태에 따른 동적 메뉴 -->
                 {% if current_user.is_authenticated %}
                     <!-- 로그인된 상태 -->
@@ -607,7 +607,7 @@
                     <!-- 로그인되지 않은 상태 -->
                     <li><a href="/login" class="login-link">🔑 로그인</a></li>
                 {% endif %}
-                
+
                 <li><a href="#contact">연락처</a></li>
             </ul>
         </div>
@@ -631,7 +631,7 @@
         <div class="scroll-indicator">
             <div style="font-size: 2rem;">⬇</div>
         </div>
-    
+
                     <div class="book-card level-4" onclick="openBook('harry_potter_and_the_sorcerer_s_stone_learning')">
                         <div class="book-icon">📕</div>
                         <h3>Harry Potter and the Sorcerer's Stone</h3>
